@@ -1,4 +1,5 @@
-from netmiko import ConnectHandler
+import time
+from netmiko import *
 import netifaces as ni 
 from detecta import *
 import os
@@ -30,6 +31,18 @@ ciscot = {
 
 
 known_routers = []
+
+
+def arr_to_ip(ip):
+    return f"{ip[0]}.{ip[1]}.{ip[2]}.{ip[3]}"
+
+
+def get_id_net(ip, net):
+    idnet = []
+    for i in range(4):
+        idnet.append((ip[i] & net[i]))
+    return idnet
+
 
 # Listamos las interfaces de red aqui
 interfaces=os.listdir("/sys/class/net/")
@@ -109,7 +122,7 @@ def init_configure(opcion):
 	con.disconnect()
 
 #cuando se elige configurar la red con SSH se ingresa mediante telnet
-def init_configureSSH():
+def init_configureSSH(con,router):#sab paramatros, original vacio
 
 	conT = ConnectHandler(**ciscot)
 
