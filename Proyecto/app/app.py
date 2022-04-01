@@ -1,6 +1,7 @@
 from importlib.resources import contents
 from flask import Flask, render_template, request, url_for, redirect
-from flask_sqlalchemy import SQLAlchemy
+from flask_sqlalchemy import SQLAlchemy 
+
 
 app = Flask(__name__)
 
@@ -41,6 +42,28 @@ def delete(id):
     Users.query.filter_by(id=int(id)).delete()
     db.session.commit()
     return redirect(url_for('home'))
+
+@app.route('/topologia')
+def Topoligia():
+    aux='Para la deteccion de la topologia'
+    #return redirect(url_for('home'))
+    return render_template('base.html',aux=aux)
+
+@app.route('/userrouter')
+def Userrouter():
+    aux= 'Para añadir usuarios a los routers'
+    return render_template('base.html',aux=aux)
+
+@app.route('/rotocolos')
+def Rotocolos():
+    #return 'Para los protocolos'
+    aux="Para la deteccion de la topologia"
+    return render_template('base.html',aux=aux)
+
+
+
+
+
 
 if __name__ == '__main__':
     app.run(debug=True)
