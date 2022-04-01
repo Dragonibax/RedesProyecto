@@ -1,7 +1,7 @@
 from importlib.resources import contents
 from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy 
-
+import red #para los vecionos
 
 app = Flask(__name__)
 
