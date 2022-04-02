@@ -18,7 +18,7 @@
 <body>
 
   <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#">ggNoTeam</a>
+    <a class="navbar-brand">ggNoTeam</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
       aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -44,7 +44,7 @@
   <main class="container p-4">
     <h1 class="display-4 text-center title mt-4">{{aux}}</h1>
 
-    <form action='/agregar' method="POST">
+    <form action='/telnet/crear' method="POST">
       <div class="form-group">
         <input type="text" name="content" placeholder="Usuario" class="form-control" autofocus>
       </div>
@@ -55,8 +55,10 @@
         <input type="text" name="content3" placeholder="ip" class="form-control" autofocus>
       </div>
 
-      <button type="submit" class="btn btn-primary btn-block">añadir Usuarios Telnet</button>
-
+      <button  type="submit" class="btn btn-primary btn-block">añadir Usuarios Telnet</button>
+      <button formaction='/telnet/editar' type="submit" class="btn btn-primary btn-block">editar Usuarios Telnet</button>
+      <button formaction='/telnet/eliminar' type="submit" class="btn btn-primary btn-block">eliminar Usuarios Telnet</button>
+ 
     </form>
 
 

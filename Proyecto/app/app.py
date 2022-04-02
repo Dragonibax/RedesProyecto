@@ -63,12 +63,12 @@ def Rotocolos():
     return render_template('base.html',aux=aux)
 
 #------------------Telnet--------------
-#Agrgar usuario telnet
-@app.route('/agregar',methods=['POST'])
+#Agrgar usuario telnet // edita la contraseña teniendo el nombre de usuario
+@app.route('/telnet/crear',methods=['POST'])
 def agregar():#ip,username,contrasena):
     
     jala=request.form.get('content2')
-    print(jala)
+    #print(jala)
     username=request.form['content'] 
     contrasena= request.form['content2'] 
     ip= request.form['content3']
@@ -89,37 +89,48 @@ def agregar():#ip,username,contrasena):
 
     return("usuario agregado con exito")
 
+#Editar usuario telnet //elimina el usuario teniendo el usuario
+@app.route('/telnet/editar',methods=['POST'])
+def Editar():
+    username=request.form['content'] 
+    contrasena= request.form['content2'] 
+    ip= request.form['content3']
+    tn = telnetlib.Telnet(str(ip))
+    tn.read_until(b"Username: ")
+    tn.write("kate\n".encode('UTF-8'))
+    tn.read_until(b"Password: ")	
+    tn.write("1234\n".encode('UTF-8'))	
+    tn.write(b"enable \n")
+    tn.read_until(b"Password: ")
+    tn.write("admin01\n".encode('UTF-8'))	
+    tn.write(b"config t \n")
+    tn.write(("username " + str(username) + " priv 15 password " + str(contrasena) +"\n").encode('UTF-8'))
+    tn.write(b"end \n")
+    tn.write(b"exit \n")		
+    texto =tn.read_all()
+    print(texto.decode('UTF-8'))
+    return("Credenciales de usuario actualizadas con exito")
 
-@app.route('/Editar/<ip>/<username>/<password>',methods=['GET'])
-def Editar(ip,username,password):
-	tn = telnetlib.Telnet(str(ip))
-	tn.read_until(b"Username: ")
-	tn.write("admin\n".encode('UTF-8'))
-	tn.read_until(b"Password: ")	
-	tn.write("admin01\n".encode('UTF-8'))	
-	tn.write(b"config t \n")
-	tn.write(("username " + str(username) + " priv 15 password " + str(password) +"\n").encode('UTF-8'))
-	tn.write(b"end \n")
-	tn.write(b"exit \n")		
-	texto =tn.read_all()
-	print(texto.decode('UTF-8'))
-	return("Credenciales de usuario actualizadas con exito")
+@app.route('/telnet/eliminar',methods=['POST'])
+def eliminar():
+    username=request.form['content']  
+    ip= request.form['content3']
+    tn = telnetlib.Telnet(str(ip))
+    tn.read_until(b"Username: ")
+    tn.write("kate\n".encode('UTF-8'))
+    tn.read_until(b"Password: ")	
+    tn.write("1234\n".encode('UTF-8'))	
+    tn.write(b"enable \n")
+    tn.read_until(b"Password: ")
+    tn.write("admin01\n".encode('UTF-8'))	
+    tn.write(b"config t \n")
+    tn.write(("no username " + str(username) + "\n").encode('UTF-8'))
+    tn.write(b"end \n")
+    tn.write(b"exit \n")		
+    texto =tn.read_all()
+    print(texto.decode('UTF-8'))
+    return("Usuario eliminado con exito")
 
-
-@app.route('/Eliminar/<ip>/<username>',methods=['GET'])
-def eliminar(ip,username):
-	tn = telnetlib.Telnet(str(ip))
-	tn.read_until(b"Username: ")
-	tn.write("admin\n".encode('UTF-8'))
-	tn.read_until(b"Password: ")	
-	tn.write("admin01\n".encode('UTF-8'))	
-	tn.write(b"config t \n")
-	tn.write(("no username " + str(username) + "\n").encode('UTF-8'))
-	tn.write(b"end \n")
-	tn.write(b"exit \n")		
-	texto =tn.read_all()
-	print(texto.decode('UTF-8'))
-	return("Usuario eliminado con exito")
 
 
 
