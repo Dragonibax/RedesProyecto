@@ -62,17 +62,23 @@ def Rotocolos():
     aux="Para la deteccion de la topologia"
     return render_template('base.html',aux=aux)
 
-
+#------------------Telnet--------------
+#Agrgar usuario telnet
 @app.route('/agregar',methods=['POST'])
 def agregar():#ip,username,contrasena):
     
     jala=request.form.get('content2')
     print(jala)
-    username=request.form['content'], contrasena= request.form['content2'], ip= request.form['content3'])
+    username=request.form['content'] 
+    contrasena= request.form['content2'] 
+    ip= request.form['content3']
     tn = telnetlib.Telnet(str(ip))
     tn.read_until(b"Username: ")
-    tn.write("admin\n".encode('UTF-8'))
+    tn.write("kate\n".encode('UTF-8'))
     tn.read_until(b"Password: ")	
+    tn.write("1234\n".encode('UTF-8'))
+    tn.write(b"enable \n")
+    tn.read_until(b"Password: ")
     tn.write("admin01\n".encode('UTF-8'))	
     tn.write(b"config t \n")
     tn.write(("username " + str(username) + " priv 15 password " + str(contrasena) +"\n").encode('UTF-8'))
