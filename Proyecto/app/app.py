@@ -3,6 +3,8 @@ from flask import Flask, render_template, request, url_for, redirect
 from flask_sqlalchemy import SQLAlchemy 
 import red #para los vecionos
 import telnetlib
+import ssh
+import rip_ospf
 
 
 app = Flask(__name__)
@@ -56,38 +58,74 @@ def Userrouter():
     aux= 'Para añadir usuarios a los routers'
     return render_template('userrouter.html',aux=aux)
 
+#-----------------enrutamientos-------------------------------
 @app.route('/rotocolos')
-def Rotocolos():
-    #return 'Para los protocolos'
-    aux="Para la deteccion de la topologia"
-    return render_template('base.html',aux=aux)
+def enruterw():
+    aux="Configuracion protocolos"
+    return render_template('configurarprotocolo.html',aux=aux)
+
+@app.route('/rotocolos/conf',methods=['POST'])
+def enruterc():
+    router= request.form['content'] 
+    protocolo=request.form['content2']
+    rip_ospf.enruter(router, protocolo)
+    aux="PAra los protocolos....... debio configurar algo... creo"
+    return render_template('mensajehome.html',aux=aux)
+
+#----------------------ssh--------------------------
+@app.route('/ssh')
+def sshtw():
+    aux="para el ssh, creo que funciona"
+    return render_template('confssh.html',aux=aux)
+
+@app.route('/ssh/conf', methods=['POST'])
+def sshtc():
+    username=request.form['content'] 
+    contrasena= request.form['content2'] 
+    ip= request.form['content3']
+    ssh.ssht(username, contrasena, ip)
+    aux="para el ssh, creo que funciona"
+    return render_template('mensajehome.html',aux=aux)  
+
+
+
 
 #------------------Telnet--------------
 #Agrgar usuario telnet // edita la contraseña teniendo el nombre de usuario
 @app.route('/telnet/crear',methods=['POST'])
 def agregar():#ip,username,contrasena):
     
-    jala=request.form.get('content2')
-    #print(jala)
+    
+    #jala=request.form.get('content4')
+    jala=1#añadir al formulario captura para la primer configuracion ip
+    #añadir un agregar atodos los routers
+    
     username=request.form['content'] 
     contrasena= request.form['content2'] 
     ip= request.form['content3']
+
+    #print(jala)
+        
     tn = telnetlib.Telnet(str(ip))
+    #tn.write(b"enable \n")
     tn.read_until(b"Username: ")
     tn.write("kate\n".encode('UTF-8'))
     tn.read_until(b"Password: ")	
     tn.write("1234\n".encode('UTF-8'))
     tn.write(b"enable \n")
     tn.read_until(b"Password: ")
-    tn.write("admin01\n".encode('UTF-8'))	
-    tn.write(b"config t \n")
+    tn.write("1234\n".encode('UTF-8'))	
+    #tn.write(b"enable \n")
+    tn.write(b"configure terminal \n")
     tn.write(("username " + str(username) + " priv 15 password " + str(contrasena) +"\n").encode('UTF-8'))
     tn.write(b"end \n")
     tn.write(b"exit \n")		
     texto =tn.read_all()
     print(texto.decode('UTF-8'))
+    aux="usuario agregado con exito"
+    return render_template('mensajehome.html',aux=aux)
 
-    return("usuario agregado con exito")
+
 
 #Editar usuario telnet //elimina el usuario teniendo el usuario
 @app.route('/telnet/editar',methods=['POST'])
@@ -102,14 +140,15 @@ def Editar():
     tn.write("1234\n".encode('UTF-8'))	
     tn.write(b"enable \n")
     tn.read_until(b"Password: ")
-    tn.write("admin01\n".encode('UTF-8'))	
+    tn.write("1234\n".encode('UTF-8'))	
     tn.write(b"config t \n")
     tn.write(("username " + str(username) + " priv 15 password " + str(contrasena) +"\n").encode('UTF-8'))
     tn.write(b"end \n")
     tn.write(b"exit \n")		
     texto =tn.read_all()
     print(texto.decode('UTF-8'))
-    return("Credenciales de usuario actualizadas con exito")
+    aux="Credenciales de usuario actualizadas con exito"
+    return render_template('mensajehome.html',aux=aux)
 
 @app.route('/telnet/eliminar',methods=['POST'])
 def eliminar():
@@ -122,16 +161,16 @@ def eliminar():
     tn.write("1234\n".encode('UTF-8'))	
     tn.write(b"enable \n")
     tn.read_until(b"Password: ")
-    tn.write("admin01\n".encode('UTF-8'))	
+    #tn.write("admin01\n".encode('UTF-8'))	
+    tn.write("1234\n".encode('UTF-8'))	
     tn.write(b"config t \n")
     tn.write(("no username " + str(username) + "\n").encode('UTF-8'))
     tn.write(b"end \n")
     tn.write(b"exit \n")		
     texto =tn.read_all()
     print(texto.decode('UTF-8'))
-    return("Usuario eliminado con exito")
-
-
+    aux="Usuario eliminado con exito"
+    return render_template('mensajehome.html',aux=aux)
 
 
 if __name__ == '__main__':

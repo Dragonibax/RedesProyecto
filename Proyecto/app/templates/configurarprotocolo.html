@@ -47,6 +47,19 @@
   <main class="container p-4">
     <h1 class="display-4 text-center title mt-4">{{aux}}</h1>
 
+    <form action='/rotocolos/conf' method="POST">
+      <div class="form-group">
+        <input type="text" name="content" placeholder="Nombre del router" class="form-control" autofocus>
+      </div>
+      <div class="form-group">
+        <!--cambiar por combobox-->
+        <input type="text" name="content2" placeholder="protocolo" class="form-control" autofocus>
+      </div>
+      <button  type="submit" class="btn btn-primary btn-block">añadir protocolo</button>
+
+    </form>
+
+
 </body>
 
 </html>
