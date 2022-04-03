@@ -12,8 +12,12 @@
   <link href="https://fonts.googleapis.com/css?family=Lobster&display=swap" rel="stylesheet">
   <!-- MAIN CSS -->
   <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  
 
 </head>
+
 
 <body>
 
@@ -55,7 +59,31 @@
         <!--cambiar por combobox-->
         <input type="text" name="content2" placeholder="protocolo" class="form-control" autofocus>
       </div>
-      <button  type="submit" class="btn btn-primary btn-block">añadir protocolo</button>
+       <!--<button  type="submit" class="btn btn-primary btn-block">añadir protocolo</button>-->
+      
+      
+      <div class="w3-light-grey">
+        <div id="myBar"  class="w3-container w3-green" style="height:24px;width:0"></div>
+      </div>
+      </br>
+      </br>
+      <button type="submit" class="btn btn-primary btn-block" onclick="move()">añadir protocolo</button>
+      
+      <script>
+        function move() {
+          var elem = document.getElementById("myBar");   
+          var width = 0;
+          var id = setInterval(frame, 1);
+          function frame() {
+            if (width >= 100) {
+              clearInterval(id);
+            } else {
+              width=width+0.05; 
+              elem.style.width = width + '%'; 
+            }
+          }
+        }
+        </script>
 
     </form>
 
