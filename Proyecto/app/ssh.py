@@ -41,7 +41,7 @@ def ssht(username, password, ip):
     tn.write("1234\n".encode('UTF-8'))
     tn.write(b"enable \n")
     tn.read_until(b"Password: ")
-    tn.write("admin01\n".encode('UTF-8'))	
+    tn.write("1234\n".encode('UTF-8'))	
     #tn.write(str(comandos))
     tn.write(b"config t \n")
     #tn.write(b"enable secret 1234 \n")

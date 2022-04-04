@@ -5,6 +5,7 @@ import red #para los vecionos
 import telnetlib
 import ssh
 import rip_ospf
+import rutasUsers
 
 
 app = Flask(__name__)
@@ -55,7 +56,7 @@ def Topoligia():
 
 @app.route('/userrouter')
 def Userrouter():
-    aux= 'Para añadir usuarios a los routers'
+    aux= 'Si el router no esta configurado añade telnet y un usuario o simplemente añadir, modificar , o eliminar usuarios mientras se tenga la ip'
     return render_template('userrouter.html',aux=aux)
 
 #-----------------enrutamientos-------------------------------
@@ -99,24 +100,19 @@ def agregar():#ip,username,contrasena):
     #jala=request.form.get('content4')
     jala=1#añadir al formulario captura para la primer configuracion ip
     #añadir un agregar atodos los routers
-    
+
     username=request.form['content'] 
     contrasena= request.form['content2'] 
     ip= request.form['content3']
-
-    #print(jala)
-        
     tn = telnetlib.Telnet(str(ip))
-    #tn.write(b"enable \n")
     tn.read_until(b"Username: ")
     tn.write("kate\n".encode('UTF-8'))
     tn.read_until(b"Password: ")	
-    tn.write("1234\n".encode('UTF-8'))
+    tn.write("1234\n".encode('UTF-8'))	
     tn.write(b"enable \n")
     tn.read_until(b"Password: ")
     tn.write("1234\n".encode('UTF-8'))	
-    #tn.write(b"enable \n")
-    tn.write(b"configure terminal \n")
+    tn.write(b"config t \n")
     tn.write(("username " + str(username) + " priv 15 password " + str(contrasena) +"\n").encode('UTF-8'))
     tn.write(b"end \n")
     tn.write(b"exit \n")		
@@ -171,6 +167,26 @@ def eliminar():
     print(texto.decode('UTF-8'))
     aux="Usuario eliminado con exito"
     return render_template('mensajehome.html',aux=aux)
+
+#----------------------sabgood--------------------------
+@app.route('/menuinterno')
+def diosbinw():
+    aux="Pruebas de mi gloriosa evolucion: 1 : Configurar la red\n 2 : Configurar la conexión SSH de la red \n 3 : Agregar, modificar o eliminar un nuevo usuario\n 4: Ver informacion del dispositivo\n 5: Cambiar hostname\n'"
+    return render_template('dios.html',aux=aux)
+
+@app.route('/menuinterno/ejecucion', methods=['POST'])
+def diosbinp():
+    username=request.form['content'] 
+    contrasena= request.form['content2'] 
+    ip= request.form['content3']
+    opcion = request.form['content4']
+    rutasUsers.diosbino(username, contrasena, ip, opcion)
+    aux="habra funcionado?"
+    return render_template('mensajehome.html',aux=aux)  
+
+
+
+
 
 
 if __name__ == '__main__':
