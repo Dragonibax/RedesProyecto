@@ -1,0 +1,39 @@
+{% include "base.html"%}
+{% block optional_style %}
+  <link rel="stylesheet" href="{{url_for('static',filename='/css/devices.css')}}">
+{% endblock %}
+{% block content%}
+  <div class="container">
+    {% for router in routers %}
+      <div class="mt-5">
+        <div class="d-style btn btn-brc-tp border-2 bgc-white btn-outline-blue btn-h-outline-blue btn-a-outline-blue w-100 my-2 py-3 shadow-sm">
+          <div class="row align-items-center">
+            <div class="col-12 col-md-4">        
+              <h4 class="pt-3 text-170 text-600 text-primary-d1 letter-spacing">
+                ID: {{router.name}}
+              </h4>
+              <div class="text-secondary-d1 text-120">
+                <span class="ml-n15 align-text-bottom"></span><span class="text-180">IP: {{router.ip}}</span>
+              </div>
+            </div>  
+            <ul class="list-unstyled mb-0 col-12 col-md-4 text-dark-l1 text-90 text-left my-4 my-md-0">
+              <div class="text-center">
+                {% if router.has_ssh == '0' or router.has_ssh == 0%}
+                  <h3 style="color:red;">SSH inhabilitado</h3>
+                {% else %}
+                  <h3 style="color:green;">SSH habilitado</h3>
+                {% endif %}
+              </div>
+            </ul>          
+            <div class="col-12 col-md-4 text-center">
+              {% if router.has_ssh == '0' or router.has_ssh == 0%}              
+                <a href="{{url_for('users.enable',id=router.id)}}"><button class="btn-primary btn-hab">Habilitar ssh</button></a>         
+              {% endif%}
+                <a href="{{url_for('users.list_users',id=router.id)}}"><button class="btn-primary">Consultar usuarios</button></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+  {% endblock%}

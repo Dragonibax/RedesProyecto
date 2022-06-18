@@ -1,0 +1,16 @@
+{% include "base.html" %}
+{% block optional_style %}
+<link rel="stylesheet" href="{{url_for('static',filename='/css/graphs.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1>Monitoreando {{router.name}}</h1>
+        {% for interface in interfaces %}
+            <div class="row graph-img">
+                <img src="{{url_for('static',filename=interface)}}">
+            </div>
+        {% endfor %}
+        <a href="{{url_for("monitor.monitor_interface",id=router.id)}}"><button class="btn btn-primary btn-update">Actualizar</button></a>
+        <a href="{{url_for("monitor.stop_monitor",id=router.id)}}"><button class="btn btn-primary">Dejar de monitorear</button></a>
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% include "base.html"%}
+{% block optional_style %}
+  <link rel="stylesheet" href="{{url_for('static',filename='/css/users.css')}}">
+{% endblock%}
+{% block content%}
+<div class="container">
+    <div class="text-center mb-5 description">
+      <h3>Usuarios del router {{router.name}} </h3>
+      <h4><p class="lead">IP: {{router.ip}}</p></h4>
+        {% if size == 0 %}
+            <p class="card-text">No hay usuarios registrados :(</p>
+        {% else%} 
+    </div>
+          {% for user in sshusers %}
+            <div class="card mb-3 mx-auto">
+              <div class="card-body">     
+                <div class="d-flex flex-column flex-md-row">
+                  <span class="avatar avatar-text rounded-3 me-4 bg-info mb-2">{{user.id}}</span>
+                  <div class="row flex-fill">
+                    <div class="col-sm-5">  
+                      <h4 class="h5">{{user.username}}</h4>
+                      <span id="ip">Privilege</span> <span id="nose">15</span>
+                    </div>
+                    <div class="col-sm-3 text-lg-end">
+                      <a href="{{url_for('users.delete',id=router.id,idu=user.id)}}"><button  class="btn btn-primary">Eliminar</button></a>
+                      <a href="{{url_for('users.modify',id=router.id,idu=user.id)}}"><button class="btn btn-primary">Modificar</button></a>
+                    </div>
+                  </div>
+                </div>
+              </div>  
+            </div>
+          {% endfor %}
+        {% endif %}
+    <a href="{{url_for('users.new',id=router.id)}}" class="btn btn-primary">Agregar usuario</a>
+    <a href="{{url_for('users.list_devices')}}" class="btn btn-primary">Regresar</a>
+  </div>
+{% endblock%}
+  

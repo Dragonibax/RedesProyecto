@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="{{url_for('static',filename='/css/bootstrap/bootstrap.min.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='/css/universal.css')}}">
+	<script type="text/javascript" src="{{url_for('static',filename='/js/jquery.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='/js/popper.min.js')}}"></script>
+	<script type="text/javascript" src="{{url_for('static',filename='/js/bootstrap/bootstrap.min.js')}}"></script>
+    {% block optional_style %}{% endblock %}
+	<title>LCDNL</title>
+</head>
+<body class="text-center">
+  <div class="text-center">
+    <nav class="mx-auto">
+      <a href="{{url_for('monitor.devices')}}"><button class="btn btn-primary">SNMP</button></a>
+      <a href="{{url_for('alerts.configure')}}"><button class="btn btn-primary">CORREO</buton></a>
+        <a href="{{url_for('auth.logout')}}"><button class="btn btn-primary">Cerrar sesión</buton></a>   
+    </nav>
+  </div>
+  <div class="text-center">
+    {% block content %}{% endblock %}
+  </div>
+</body>
+</html>

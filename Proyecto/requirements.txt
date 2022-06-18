@@ -1,0 +1,11 @@
+flask_login
+flask_sqlalchemy
+flask_bcrypt
+pysnmp
+pysnmp-mibs
+yagmail
+pygal
+cairosvg
+netmiko
+networkx
+apscheduler

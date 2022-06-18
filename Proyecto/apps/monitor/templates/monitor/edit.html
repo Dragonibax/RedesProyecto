@@ -1,0 +1,39 @@
+{% include "base.html"%}
+{% block optional_style %}
+    <link rel="stylesheet" href="{{url_for('static',filename='/css/monitor_edit.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <h1 class="title">Información del sistema para el router {{router.name}}</h1>
+        <div class="text-center">
+            <h3>Nombre del router</h3>
+            <form action="{{url_for('monitor.change_name',id=router.id)}}" method="post" class="data-form">
+                <label>Valor anterior:</label>
+                <input type="text" value="{{router.name}}">
+                <label>Nuevo valor:</label>
+                <input name="sysname" placeholder="Ingrese nuevo valor">
+                <input type="submit" class="btn btn-primary" value="Modificar datos">
+            </form>
+        </div>
+        <div class="text-center">
+            <h3>Ubicación del router</h3>
+            <form action="{{url_for('monitor.change_location',id=router.id)}}" method="post" class="data-form">
+                <label>Valor anterior:</label>
+                <input type="text" value="{{router.location}}">
+                <label>Nuevo valor:</label>
+                <input name="syslocation" placeholder="Ingrese nuevo valor">
+                <input type="submit" class="btn btn-primary" value="Modificar datos">
+            </form>
+        </div>
+        <div class="text-center">
+            <h3>Contacto del router</h3>
+            <form action="{{url_for('monitor.change_contact',id=router.id)}}" method="post" class="data-form">
+                <label>Valor anterior:</label>
+                <input type="text" value="{{router.contact}}">
+                <label>Nuevo valor:</label>
+                <input name="syscontact" placeholder="Ingrese nuevo valor">
+                <input type="submit" class="btn btn-primary" value="Modificar datos">
+            </form>
+        </div>
+    </div>
+{% endblock %}

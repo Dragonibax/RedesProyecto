@@ -1,0 +1,23 @@
+{% include "base.html" %}
+{% block optional_style %}
+<link rel="stylesheet" href="{{url_for('static',filename='/css/alerts.css')}}">
+{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <a href="{{url_for('alerts.list_records')}}"><button class="btn btn-primary">Bitácora</button></a>
+        <p>Nota: Conservar los valores que se encuentran entre ** puesto que serán sustituidos dinámicamente.</p>
+        <form action="" method="post" class="alerts-form">
+            <h3>Configuración de alertas para monitoreo de paquetes de interfaces</h3>
+            <p>Enviar el siguiente mensaje al administrador cada que el número de paquetes extraviados rebase los <input type="text" name="err_if_limit" value="{{error_limit}}"> paquetes</p>
+            <textarea name="packets">{{settings.alert_interface_packets}}</textarea>
+            
+            <h3>Configuración de alertas para monitoreo de paquetes de interfaces</h3>
+            <p>Enviar el siguiente mensaje al administrador cada que una interface cambie de estado</p>
+            <textarea name="status">{{settings.alert_interface_status}}</textarea>
+            
+            <div class="text-center">
+                <input type="submit" value="Modificar" class="btn btn-primary modify">
+            </div>
+        </form>
+    </div>
+{% endblock %}

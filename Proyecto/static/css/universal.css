@@ -1,0 +1,49 @@
+body {
+    background-color: #e3f2fd;
+}
+
+nav {
+    background-color: black !important;
+    color: #c0f3f2 !important;
+}
+
+a {
+    color: #c0f3f2 !important;
+}
+
+a:hover {
+    text-decoration: underline !important;
+    text-decoration-color: #b9bafa !important;
+    text-decoration-thickness: 5px !important;
+}
+
+.btn-primary {
+    background-color: #b9bafa !important;
+    color: black !important;
+    border-color:  transparent !important;
+    font-weight: bold !important;
+}
+
+.btn-primary:hover {
+    text-decoration: none !important;
+    background-color: 	#c0f3f2 !important;
+}
+
+.btn-dark {
+    background-color: #9575cd;
+    border: none;
+}
+
+.btn-dark:hover {
+    background-color: #65499c;
+}
+
+.btn-outline-secondary {
+    border: 1px solid #9575cd;
+    color: #9575cd !important;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #a094b7;
+    color: white !important;
+}

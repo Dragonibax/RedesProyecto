@@ -1,0 +1,30 @@
+form {
+    margin-top: 2em !important;
+    margin-bottom: 2em !important;
+}
+
+h3 {
+   margin-top: 2em !important; 
+   margin-bottom: 2em !important;
+}
+
+button {
+    background-color: #b9bafa !important;
+    color: black !important;
+    border: transparent !important;
+}
+
+label {
+    font-weight: bold;
+}
+
+.btn-delete {
+    background-color: #ff9696 !important;
+    color: crimson !important;
+    border: solid 2px !important;
+    border-color: crimson !important;
+}
+
+.btn-delete:hover{
+    background-color: white !important;
+}

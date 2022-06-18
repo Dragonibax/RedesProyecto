@@ -1,0 +1,21 @@
+{% include "base.html" %} {% block optional_style%}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/protocolos.css')}}"> {% endblock %} {% block content %}
+<div class="container">
+    <div class="col-12 text-md-center" id="titulo">Protocolos</div>
+    <a href="{{url_for('protocols.get_entries')}}"><button class="btn-primary" style="margin-bottom: 2em !important;">Consultar cambios</button></a>
+    {% for router in routers %}
+    <div class="row">
+        <div class="col">
+            <div id="imgRouter">
+                <img src="{{url_for('static', filename='/assets/img/router.png')}}" alt="Router">
+            </div>
+            <div id="info-router">
+                <p>{{router.name}}</p>
+                <p>Protocolo de enrutamiento: {{router.protocol}}</p>
+                <p><a href="{{url_for('protocols.conf_protocolos',id=router.id)}}" class="btn btn-dark" role="button">Configurar enrutamiento</a></p>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}

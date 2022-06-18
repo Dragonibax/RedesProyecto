@@ -1,0 +1,18 @@
+textarea {
+    width: 40%;
+    text-align: center;
+    height: 4em;
+    border-radius: 0.5em;
+    border-color: black;
+    font-size: medium;
+    margin-top: 2em;
+    margin-bottom: 1em;
+}
+
+.alerts-form {
+    margin-top: 3em;
+}
+
+.modify {
+    margin-top: 2em;
+}

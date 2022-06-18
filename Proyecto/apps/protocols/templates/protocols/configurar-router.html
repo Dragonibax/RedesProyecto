@@ -1,0 +1,76 @@
+{% include "base.html" %} {% block optional_style %}
+<link rel="stylesheet" href="{{url_for('static', filename='/css/configurar-router.css')}}"> {% endblock %} {% block content %}
+<div class="container">
+    <div class="col-12 text-md-center" id="titulo">Configuración</div>
+    <div class="row">
+        <div class="col d-flex justify-content-center" id="router-config">
+            <img src="{{url_for('static', filename='/assets/img/router.png')}}" alt="Router">
+        </div>
+        <div class="col d-flex justify-content-lg-start">
+            <form action="/protocols/router/{{router.id}}/configure" method="post">
+                <p>
+                    <input type="text" class="form-control" name="nombre-router" id="nombre-router" value="{{router.name}}" disabled>
+                </p>
+                <p>
+                    {% if 'Debes seleccionar un protocolo' in errors %}
+                    <select class="custom-select is-invalid" name="protocolo-select" id="protocolo-select">
+                        <option value="" selected>Seleccionar protocolo</option>
+                        <option value="OSPF">OSPF</option>
+                        <option value="RIP">RIP</option>
+                        <option value="IGRP">IGRP</option>
+                    </select>
+                    {% else %}
+                    <select class="custom-select" name="protocolo-select" id="protocolo-select">
+                        <option value="" selected>Seleccionar protocolo</option>
+                        <option value="OSPF">OSPF</option>
+                        <option value="RIP">RIP</option>
+                        <option value="IGRP">IGRP</option>
+                    </select>
+                    {% endif %}
+                </p>
+                <p>
+                    {% if 'Debes seleccionar un usuario' in errors %}
+                    <select class="custom-select is-invalid" name="username-select" id="username-select">
+                        <option value="" selected>Selecciona un usuario</option>
+                        {% for sshUser in sshUsers %}
+                        {% if sshUser.router_id == router.id %}
+                        <option value="{{sshUser.username}}">{{sshUser.username}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% else %}
+                    <select class="custom-select" name="username-select" id="username-select">
+                        <option value="" selected>Selecciona un usuario</option>
+                        {% for sshUser in sshUsers %}
+                        {% if sshUser.router_id == router.id %}
+                        <option value="{{sshUser.username}}">{{sshUser.username}}</option>
+                        {% endif %}
+                        {% endfor %}
+                    </select>
+                    {% endif %}
+                </p>
+                <p>
+                    {% if 'Debes ingresar tu contraseña' in errors %}
+                    <input type="password" class="form-control is-invalid" name="ssh-password" id="ssh-password" placeholder="Contraseña SSH">
+                    {% elif 'La contraseña es incorrecta' in errors %}
+                    <input type="password" class="form-control is-invalid" name="ssh-password" id="ssh-password" placeholder="Contraseña SSH">
+                    {% else %}
+                    <input type="password" class="form-control" name="ssh-password" id="ssh-password" placeholder="Contraseña SSH">
+                    {% endif %}
+                </p>
+                <p>
+                    <input type="submit" value="Establecer protocolo" class="btn btn-dark" role="button">
+                    <a href="{{url_for('protocols.proto')}}" class="btn btn-outline-secondary">Regresar</a>                    
+                </p>
+            </form>
+        </div>
+    </div>
+    {% if errors %}
+    <div class="alert alert-danger">
+        {% for error in errors %}
+        <p>{{error}}</p>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

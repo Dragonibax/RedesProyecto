@@ -1,0 +1,28 @@
+{% include "base.html" %}
+{% block optional_style %}
+
+{% endblock %}
+{% block content %}
+    <div class="text-center">
+        <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Usuario</th>
+                    <th scope="col">Fecha y hora</th>
+                    <th scope="col">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for record in records %}
+                    <tr>
+                        <th scope="row">{{record.id}}</th>
+                        <td>{{record.user}}</td>
+                        <td>{{record.time}}</td>
+                        <td>{{record.description}}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
