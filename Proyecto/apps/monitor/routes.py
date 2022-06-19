@@ -63,7 +63,7 @@ def view():
 def change_name(id):
     router = Router.get_by_id(id)
     name = request.form.get('sysname')
-    mailing.send_email(f'El router {router.name} ha cambiado su nombre a {name}','Cambios en la MIB-II','aarongamasc@gmail.com')
+    mailing.send_email(f'El router {router.name} ha cambiado su nombre a {name}','Cambios en la MIB-II','sabino.snm@gmail.com')
     router.update_name(name)
     return redirect(url_for('monitor.edit',id=id))
 
@@ -71,7 +71,7 @@ def change_name(id):
 def change_location(id):
     router = Router.get_by_id(id)
     location = request.form.get('syslocation')
-    mailing.send_email(f'El router {router.name} ha cambiado su ubicacion a {location}','Cambios en la MIB-II','aarongamasc@gmail.com')
+    mailing.send_email(f'El router {router.name} ha cambiado su ubicacion a {location}','Cambios en la MIB-II','sabino.snm@gmail.com')
     router.update_location(location)
     return redirect(url_for('monitor.edit',id=id))
 
@@ -79,6 +79,6 @@ def change_location(id):
 def change_contact(id):
     router = Router.get_by_id(id)
     contact = request.form.get('syscontact')
-    mailing.send_email(f'El router {router.name} ha cambiado su contacto a {contact}','Cambios en la MIB-II','aarongamasc@gmail.com')
+    mailing.send_email(f'El router {router.name} ha cambiado su contacto a {contact}','Cambios en la MIB-II','sabino.snm@gmail.com')
     router.update_contact(contact)
     return redirect(url_for('monitor.edit',id=id))

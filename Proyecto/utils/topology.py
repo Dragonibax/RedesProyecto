@@ -93,7 +93,7 @@ def detect():
                 try:            
                     topology_graph.add_edge(router,neighbor[0])
                     if neighbor[0] not in routers:
-                        new_router = Router(name=neighbor[0],ip=neighbor[1],protocol='no protocol',has_ssh='0',username='admin',password='admin',secret='admin',location='unknown',contact='ggnoteam@gmail.com',networks=topology.get(router)['networks'])
+                        new_router = Router(name=neighbor[0],ip=neighbor[1],protocol='no protocol',has_ssh='0',username='admin',password='admin',secret='admin',location='unknown',contact='ardapendragon@gmail.com',networks=topology.get(router)['networks'])
                         database.insert(new_router)
                     else:
                         routers.remove(neighbor[0])
