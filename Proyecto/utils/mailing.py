@@ -6,7 +6,7 @@ yag = None
 
 def init_app():
     global yag
-    yag = yagmail.SMTP('ardapendragon@gmail.com',oauth2_file='/home/sabino/Escritorio/secretredesSAB.json')
+    yag = yagmail.SMTP('migueramirez888@gmail.com',oauth2_file='/home/kali/Documents/mike.json')
     return
 
 def send_email(message,subject,to="sabino.snm@gmail.com"):
