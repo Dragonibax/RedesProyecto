@@ -14,9 +14,11 @@
 <body class="text-center">
   <div class="text-center">
     <nav class="mx-auto">
-      <a href="{{url_for('monitor.devices')}}"><button class="btn btn-primary">SNMP</button></a>
-      <a href="{{url_for('alerts.configure')}}"><button class="btn btn-primary">CORREO</buton></a>
-        <a href="{{url_for('auth.logout')}}"><button class="btn btn-primary">Cerrar sesión</buton></a>   
+      <a href="{{url_for('auth.dashboard')}}"><button class="sabbotom">INICIO</buton></a>
+      <a href="{{url_for('monitor.view')}}"><button class="sabbotom">TOPOLOGIA</button></a>
+      <a href="{{url_for('monitor.devices')}}"><button class="sabbotom">ROUTERS</button></a>
+      <a href="{{url_for('alerts.configure')}}"><button class="sabbotom">ALERTAS</buton></a>
+        <a href="{{url_for('auth.logout')}}"><button class="sabbotom">CERRAR SESION</buton></a>   
     </nav>
   </div>
   <div class="text-center">

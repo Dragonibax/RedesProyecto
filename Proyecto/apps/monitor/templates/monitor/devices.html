@@ -4,17 +4,20 @@
 {%  block content%}
 <div class="text-center">
     <h1>Selecciona un router para monitorear</h1>
-    <div class="container" style="display: in-line !important;">
-        {% for router in routers %}
-            <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
-                <div class="card-header">{{router.name}}</div>
-                <div class="card-body">
-                    <h5 class="card-title">¿Qué desea hacer?</h5>
-                    <a href="{{url_for('monitor.edit',id=router.id)}}"><button>Configurar</button></a>
-                    <a href="{{url_for('monitor.start_monitor',id=router.id)}}"><button>Monitorear</button></a>
+    <div class="routers">
+        <div class="container" style="display: in-line !important;">
+            
+            {% for router in routers %}
+                <div class="card text-white bg-primary mb-3" style="max-width: 18rem;">
+                    <div class="card-header">{{router.name}}</div>
+                    <div class="card-body">
+                        <h5 class="card-title">¿Qué desea hacer?</h5>
+                        <a href="{{url_for('monitor.edit',id=router.id)}}"><button>Configurar</button></a>
+                        <a href="{{url_for('monitor.start_monitor',id=router.id)}}"><button>Monitorear</button></a>
+                    </div>
                 </div>
-            </div>
-        {% endfor %}
+            {% endfor %}
+        </div>
     </div>
 </div>
 {% endblock%}

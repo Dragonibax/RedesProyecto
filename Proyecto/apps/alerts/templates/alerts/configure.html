@@ -4,19 +4,21 @@
 {% endblock %}
 {% block content %}
     <div class="text-center">
-        <a href="{{url_for('alerts.list_records')}}"><button class="btn btn-primary">Bitácora</button></a>
-        <p>Nota: Los valores entre "**" no se deben modificar</p>
+        <h2>Nota: Los valores entre "**" no se deben modificar</h2>
         <form action="" method="post" class="alerts-form">
-            <h3>Configuración de alertas</h3>
-            <p>Se enviará el mensaje cuando se pierdan más de <input type="text" name="err_if_limit" value="{{error_limit}}"> paquetes</p>
+            <h2>Configuración de alertas</h2>
+            <h2>Se enviará el mensaje cuando se pierdan más de <input type="text" name="err_if_limit" value="{{error_limit}}"> paquetes</h2>
             <textarea name="packets">{{settings.alert_interface_packets}}</textarea>
 
-            <p>Mensaje cuando una interface cambie su estado:</p>
+            <h2>Mensaje cuando una interface cambie su estado:</h2>
             <textarea name="status">{{settings.alert_interface_status}}</textarea>
             
             <div class="text-center">
-                <input type="submit" value="Modificar" class="btn btn-primary modify">
+                <input type="submit" value="Modificar" class="sabbotom">
             </div>
         </form>
+        <br></br>
+        <a href="{{url_for('alerts.list_records')}}"><button class="sabbotom">Bitácora</button></a>
+        
     </div>
 {% endblock %}

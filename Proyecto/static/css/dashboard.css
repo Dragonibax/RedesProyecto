@@ -5,3 +5,15 @@ h1 {
 .topology {
     margin-top: 5em;
 }
+
+.inicial-centro{
+    margin-top: 40vh
+}
+
+.sabbotom{
+    padding-left: 5px;
+    background-color: #008CBA;
+    border: 2px solid #000000;
+    width: 17%;
+    font-size: 30px;
+}

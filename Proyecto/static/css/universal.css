@@ -1,14 +1,59 @@
 body {
-    background-color: #e3f2fd;
+    background-image: url(../../static/assets/fondo.jpg);
+}
+
+h1{
+    color: azure;
+}
+
+p{
+    color: azure;
+}
+
+h2{
+    color: azure;
+}
+
+tr{
+    color: azure;
+}
+th{
+    color: azure;
+}
+td{
+    color: azure;
+}
+
+
+
+h3{
+    color: azure;
+}
+
+.routers{
+    padding-left: 40%;
 }
 
 nav {
-    background-color: black !important;
+    background-color: rgb(4, 4, 78) !important;
     color: #c0f3f2 !important;
+    padding-top: 1%;
+    padding-bottom: 1%;
 }
 
 a {
     color: #c0f3f2 !important;
+}
+
+.sabbotom{
+    margin-left: 3%;
+    background-color: #008CBA;
+    border: 2px solid #000000;
+    width: 15%;
+}
+
+.topo{
+  padding-top: 10%;
 }
 
 a:hover {

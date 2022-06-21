@@ -4,9 +4,13 @@
 	<link rel="stylesheet" href="{{url_for('static',filename='/css/dashboard.css')}}">
 {% endblock %}
 {% block content %}
+<div class="inicial-centro">
 	<div class="text-center">
-		<a href="{{url_for('monitor.view')}}"><button class="btn btn-primary">Ver topología</button></a>
-		<a href="{{url_for('monitor.devices')}}"><button class="btn btn-primary">SNMP</button></a>
-		<a href="{{url_for('alerts.configure')}}"><button class="btn btn-primary">Alertas</button></a>
+		<a href="{{url_for('monitor.view')}}"><button class="sabbotom">Ver topología</button></a>
+		<br></br>
+		<a href="{{url_for('monitor.devices')}}"><button class="sabbotom">Routers</button></a>
+		<br></br>
+		<a href="{{url_for('alerts.configure')}}"><button class="sabbotom">Alertas</button></a>
 	</div>
+</div>	
 {% endblock %}
